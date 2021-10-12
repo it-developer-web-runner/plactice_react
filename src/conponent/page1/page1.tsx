@@ -18,7 +18,6 @@ const Page1 = (props: Page1Props) => {
 
   const faceStrings = [
     "(´・ω・｀)",
-    "m9(^Д^)ﾌﾟｷﾞｬｰ",
     "(・3・)アルェー？",
     "(・ω・)bｸﾞｯ！",
   ];
