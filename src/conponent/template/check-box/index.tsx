@@ -1,5 +1,5 @@
 import { ChangeEvent, MouseEvent, useCallback, useEffect, useState } from "react";
-
+import './check-box.scss';
 export type CheckBoxProp = {} & React.InputHTMLAttributes<HTMLInputElement>;
 
 const CheckBox = (props: CheckBoxProp) => {
@@ -21,16 +21,21 @@ const CheckBox = (props: CheckBoxProp) => {
       setChecked(_checked);
     }
   }, [_checked])
+
   return (
-    <div onClick={clickHandler}>
-      <input
-        {...props}
-        type='checkbox'
-        checked={checked}
-        defaultChecked={undefined}
-        onChange={changeHandler}
-      />
-      {value}
+    <div className='checkbox'>
+      <label className='checkbox__body'>
+        <input
+          {...props}
+          onClick={clickHandler}
+          type='checkbox'
+          checked={checked}
+          defaultChecked={undefined}
+          onChange={changeHandler}
+        />
+        <span className={checked ? 'checked_icon' : 'box_icon'} />
+        {value}
+      </label>
     </div>
   );
 };

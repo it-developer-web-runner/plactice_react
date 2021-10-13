@@ -1,4 +1,8 @@
 import React, { MouseEvent, useCallback, useEffect, useState } from "react";
+import './radio-button.scss';
+
+const icon_on = './assets/image/radio/radio_on.svg';
+const icon_off = './assets/image/radio/radio_off.svg';
 
 export type RadioButtonProp = {
   label: string,
@@ -13,7 +17,7 @@ const RadioButton = (props: RadioButtonProp) => {
   const [checked, setChecked] = useState(false);
   // - Callback -
   // -- ボタン押下 --
-  const ClickHandler = useCallback((e: MouseEvent<HTMLInputElement>) => {
+  const clickHandler = useCallback((e: MouseEvent<HTMLInputElement>) => {
     setChecked(!checked);
     if (onClick) {
       onClick(e);
@@ -34,18 +38,23 @@ const RadioButton = (props: RadioButtonProp) => {
   }, [_checked, value]);
 
   return (
-    <div
-      onClick={ClickHandler}
-    >
-      <input
-        {...props}
-        type="radio"
-        checked={checked || boolConverter(value)}
-        defaultChecked={void 0}
-        onChange={changeHandler}
-      />
-      {label}
+    <div className='radio_button'>
+      <label className='radio_button__body'>
+        <input
+          {...props}
+          onClick={clickHandler}
+          type='radio'
+          checked={checked || boolConverter(value)}
+          defaultChecked={void 0}
+          onChange={changeHandler}
+        />
+        <div className='radio_img_wrap'>
+          <img src={checked ? icon_on : icon_off} />
+        </div>
+        {label}
+     </label>
     </div>
+
   );
 };
 
